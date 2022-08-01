@@ -115,7 +115,7 @@ def copy_df(df, wb_name, ws_name):
     wb = xl.load_workbook(wb_name)
     ws = wb[ws_name]
     ws.insert_rows(2, df.shape[0])
-    for r in dataframe_to_rows(df, index=False, header=True):
+    for r in dataframe_to_rows(df, index=False, header=False):
         ws.append(r)
     wb.save(wb_name)
 
