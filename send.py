@@ -123,7 +123,7 @@ def copy_df(df, wb_name, ws_name):
 ######################
 # Main (for testing) #
 ######################
-
+'''
 if __name__ == "__main__":
     filepath = input("Complete Filepath: ")
     df_main = setup(filepath)
@@ -135,3 +135,5 @@ if __name__ == "__main__":
     copy_df(df_list[0], wb_names[0], "Case")
     copy_df(df_list[1], wb_names[1], "Contact")
     copy_df(df_list[2], wb_names[2], "Email")
+'''
+
