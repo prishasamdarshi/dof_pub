@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 import openpyxl as xl
 from idclass import DocumentID, Letters
-from openpyxl.utils.dataframe import dataframe_to_rows
 
 
 ###################################
@@ -35,7 +34,7 @@ def resource_path(relative_path):
 
 # Copy case, contact, and email templates and store them in same folder as lag report
 def copy_templates(filepath):
-    path_list = filepath.rsplit("/", 1)
+    path_list = filepath.rsplit("\\", 1)
     filename_cases = path_list[0] + "/cases.xlsx"
     filename_contacts = path_list[0] + "/contacts.xlsx"
     filename_emails = path_list[0] + "/emails.xlsx"
@@ -114,9 +113,9 @@ def add_info(df_main, df_cases, df_contacts, df_emails):
 def copy_df(df, wb_name, ws_name):
     wb = xl.load_workbook(wb_name)
     ws = wb[ws_name]
-    ws.insert_rows(2, df.shape[0])
-    for r in dataframe_to_rows(df, index=False, header=False):
-        ws.append(r)
+    for i in range(0, len(df.index)):
+        for c in range(1, ws.max_column+1):
+            ws.cell(row=i+2, column=c, value=df.iat[i, c-1])
     wb.save(wb_name)
 
 
@@ -136,4 +135,3 @@ if __name__ == "__main__":
     copy_df(df_list[1], wb_names[1], "Contact")
     copy_df(df_list[2], wb_names[2], "Email")
 '''
-
